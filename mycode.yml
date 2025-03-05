@@ -1,0 +1,10 @@
+services:
+  c1:
+    conatiner_name: "myos1"
+    image: "ubuntu:14.04"
+    command: "date"
+
+  c2:
+    conatiner_name: "myos1"
+    image: "ubuntu:14.04"
+    command: "date"

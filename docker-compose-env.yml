@@ -1,0 +1,35 @@
+# in this Code we have set environmental vairable for each and everything
+
+services:
+  db: 
+    image: mysql:latest
+    container_name: mydb1
+    networks:
+    - chayan-network
+    volumnes:
+    - /data:/var/lib/mysql
+    environment:
+    - MYSQL_ROOT_PASSWORD=redhat
+    - MYSQL_DATABASE=blogdb
+    - MYSQL_USER=chayan
+    - MYSQL_PASSWORD=redhat
+
+  wp:
+    depends_on:
+    - db
+    image: wordpress:latest
+    container_name: mywp1
+    networks:
+    - chayan-network
+    ports:
+    - 8080:80
+    environment:
+    - WORDPRESS_DB_HOST=mydb1
+    - WORDPRESS_DB_USER=chayan
+    - WORDPRESS_DB_PASSWORD=redhat
+    - WORDPRESS_DB_NAME=blogdb
+
+
+networks:
+  chayan-network:
+    driver: bridge
